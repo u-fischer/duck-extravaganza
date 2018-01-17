@@ -1,0 +1,50 @@
+% !Mode:: "TeX:UTF-8:Main"
+
+\documentclass[border=2mm]{standalone}
+\usepackage[svgnames]{xcolor}
+\usepackage{tikzducks}
+\usepackage{graphicx}
+\usetikzlibrary{calc,shapes.callouts}
+
+
+ 
+\begin{document}
+\begin{tikzpicture}
+ \node{\includegraphics[width=1.5cm]{potatoes}};
+  \duck[cap]
+ % \node at ([xshift=2mm,yshift=1mm]wing){\includegraphics[trim=0cm 0cm 0.7cm 0cm,clip,width=1cm,angle=-10]{spoon}};
+  \node[draw,inner sep=1pt ,ellipse callout,callout absolute pointer={([xshift=-3mm]bill)}] at (-1,2) {\sffamily\tiny\begin{tabular}{@{}l@{}} A potato a day \\keeps the doctor away!\end{tabular}};
+  %\draw[scale=2,transform shape] (-1.,-0.6) pic {pizza};
+  \begin{scope}[xshift=0.5cm,yshift=1.4cm,rotate=170]
+  \fill[brown, rounded corners=2, rotate=-30] (0.4,1.2) rectangle (0.7,2.2);
+  \fill[brown, rounded corners=1, rotate=-30] (0.5,0.8) rectangle (0.6,1.3);
+  \end{scope}
+  \begin{scope}[y=0.80pt, x=0.80pt, shift={(15,10)},xscale=0.00600,yscale=0.00600,fill=Silver]% g6
+  % path4
+  \path[fill] (4425.0000,4644.0000) .. controls (4121.0000,4612.0000) and
+    (3792.0000,4477.0000) .. (3515.0000,4270.0000) .. controls
+    (3242.0000,4065.0000) and (3111.0000,3865.0000) .. (3045.0000,3551.0000) ..
+    controls (3037.0000,3510.0000) and (3023.0000,3384.0000) ..
+    (3015.0000,3271.0000) .. controls (2998.0000,3032.0000) and
+    (2987.0000,2964.0000) .. (2956.0000,2894.0000) .. controls
+    (2929.0000,2835.0000) and (2902.0000,2810.0000) .. (2090.0000,2109.0000) ..
+    controls (1455.0000,1560.0000) and (989.0000,1074.0000) .. (840.0000,805.0000)
+    .. controls (760.0000,660.0000) and (764.0000,580.0000) .. (857.0000,480.0000)
+    .. controls (927.0000,404.0000) and (965.0000,387.0000) ..
+    (1046.0000,392.0000) .. controls (1187.0000,401.0000) and (1374.0000,534.0000)
+    .. (1759.0000,898.0000) .. controls (2014.0000,1141.0000) and
+    (2253.0000,1402.0000) .. (2830.0000,2075.0000) .. controls
+    (3132.0000,2426.0000) and (3241.0000,2545.0000) .. (3280.0000,2565.0000) ..
+    controls (3324.0000,2587.0000) and (3401.0000,2599.0000) ..
+    (3620.0000,2615.0000) .. controls (4022.0000,2645.0000) and
+    (4202.0000,2701.0000) .. (4409.0000,2858.0000) .. controls
+    (4676.0000,3062.0000) and (4942.0000,3523.0000) .. (5014.0000,3909.0000) ..
+    controls (5035.0000,4016.0000) and (5035.0000,4207.0000) ..
+    (5015.0000,4284.0000) .. controls (4955.0000,4513.0000) and
+    (4802.0000,4628.0000) .. (4535.0000,4643.0000) .. controls
+    (4497.0000,4646.0000) and (4447.0000,4646.0000) .. (4425.0000,4644.0000) --
+    cycle;
+\end{scope}
+\end{tikzpicture}
+
+\end{document} 

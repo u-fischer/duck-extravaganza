@@ -1,0 +1,94 @@
+% !Mode:: "TeX:UTF-8:Main"
+% arara: pdflatex
+% arara: convert: {density: 96, otheroptions: -dispose previous -delay 70 -loop 1, format: gif}
+\PassOptionsToPackage{svgnames}{xcolor}
+\documentclass[tikz,border=4mm]{standalone}
+%\usepackage[svgnames]{xcolor}
+\usepackage{tikz}
+\usepackage{tikzducks}
+\usetikzlibrary{shadings}
+
+\usepackage{etoolbox}
+\newbool{redlight}
+\newbool{yellowlight}
+\newbool{greenlight}
+
+\newcommand\traficlight{%
+ \begin{tikzpicture}
+
+\begin{scope}[y=0.80pt, x=0.80pt, yscale=-1.000000, xscale=1.000000, inner sep=0pt, outer sep=0pt]
+% rect49
+\path[draw=black,fill=gray,line width=8.000pt,rounded corners=0.0000cm] (5.0000,5.0000)
+  rectangle (125.0000,325.0000);
+\path[use as bounding box](0,400);
+\path[fill=black] (45,325) rectangle (85,420);
+
+\path[left color=black,right color=black,middle color=gray] (50,329) rectangle (85,420);
+% redlight
+\path[draw=black,fill=black,line width=6.400pt] (65.0000,65.0000) circle (1.1289cm);
+
+% yellight
+\path[draw=black,fill=black,line width=6.400pt] (65.0000,165.0000) circle (1.1289cm);
+
+% grelight
+\path[draw=black,fill=black,line width=6.400pt] (65.0000,265.0000) circle (1.1289cm);
+
+\begin{scope}% use54
+  % reflex
+  \path[fill=black!70!white] (35.0000,50.0000)arc(208.072:331.928:34.000) .. controls (97.0000,53.3333)
+    and (97.0000,56.6667) .. (95.0000,60.0000) .. controls (75.0000,72.0000) and
+    (55.0000,72.0000) .. (35.0000,60.0000) .. controls (33.0000,56.6667) and
+    (33.0000,53.3333) .. (35.0000,50.0000) -- cycle;
+
+\end{scope}
+\begin{scope}[shift={(0,100.0)}]% use56
+  % reflex
+  \path[fill=black!70!white] (35.0000,50.0000)arc(208.072:331.928:34.000) .. controls (97.0000,53.3333)
+    and (97.0000,56.6667) .. (95.0000,60.0000) .. controls (75.0000,72.0000) and
+    (55.0000,72.0000) .. (35.0000,60.0000) .. controls (33.0000,56.6667) and
+    (33.0000,53.3333) .. (35.0000,50.0000) -- cycle;
+
+\end{scope}
+\begin{scope}[shift={(0,200.0)}]% use58
+  % reflex
+  \path[fill=black!70!white] (35.0000,50.0000)arc(208.072:331.928:34.000) .. controls (97.0000,53.3333)
+    and (97.0000,56.6667) .. (95.0000,60.0000) .. controls (75.0000,72.0000) and
+    (55.0000,72.0000) .. (35.0000,60.0000) .. controls (33.0000,56.6667) and
+    (33.0000,53.3333) .. (35.0000,50.0000) -- cycle;
+
+\end{scope}
+\end{scope}
+
+\ifbool{redlight}{
+\begin{scope}[xshift=38,yshift=-67]
+\begin{scope}[scale=0.5]
+\duck[bill=red!50!white,body=red!70!brown]
+\end{scope}
+\end{scope}}{}
+
+
+\ifbool{yellowlight}{
+\begin{scope}[xshift=38,yshift=-147pt]
+\begin{scope}[scale=0.5]
+\duck[bill=yellow]
+\end{scope}
+\end{scope}}{}
+
+\ifbool{greenlight}{
+\begin{scope}[xshift=38,yshift=-227pt]
+\begin{scope}[scale=0.5]
+\duck[bill=green,body=green!70!brown]
+\end{scope}
+\end{scope}}{}
+
+\end{tikzpicture}}
+
+\begin{document}
+\pagecolor{SkyBlue}
+
+\booltrue{redlight}\traficlight \traficlight \traficlight
+\booltrue{yellowlight}\traficlight
+\boolfalse{redlight}\boolfalse{yellowlight}\booltrue{greenlight}\traficlight\traficlight\traficlight
+\boolfalse{greenlight}\booltrue{yellowlight} \traficlight
+
+\end{document}
