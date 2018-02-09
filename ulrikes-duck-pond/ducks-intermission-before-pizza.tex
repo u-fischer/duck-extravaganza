@@ -1,0 +1,91 @@
+% !Mode:: "TeX:UTF-8:Main"
+% arara: pdflatex
+% arara: convert: {density: 160, otheroptions: -dispose previous -delay 10 -loop 1, format: gif}
+% arara: showfile: {format: gif}
+\documentclass{article}
+\usepackage[utf8]{inputenc} %probably not needed ...
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{papersize={128mm,96mm},margin=0.5cm} %\textwidth=11.8, \textheight=8.6
+\usepackage[svgnames,x11names]{xcolor}
+\usepackage[osf]{AlegreyaSans}
+\usepackage{eso-pic}
+\usepackage{xfp}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{%
+  shapes,
+  decorations.shapes,
+  decorations.fractals,
+  decorations.markings,
+  shadows
+}
+
+\usepackage{tikzducks}
+
+\tikzset{pizza/.pic={
+\begin{scope}[yscale=2]
+\path[use as bounding box](-0.5,-0.25) rectangle (.5,.25);
+%\draw(-0.5,-0.25) rectangle (0.5,.25);
+\fill[brown] (0,0) ellipse (0.4 and 0.2);
+        \fill[red!70!black] (0,0) ellipse (0.34 and 0.16);
+        \fill[white!85!yellow] (0.15,0.05) ellipse (0.065 and 0.04);
+        \fill[white!85!yellow] (-0.19,-0.030) ellipse (0.065 and 0.04);
+        \fill[white!85!yellow] (-0.05,0.08) ellipse (0.065 and 0.04);
+        \fill[white!85!yellow] (.02,-0.06) ellipse (0.065 and 0.04);
+        \fill[green!40!brown] (0.09,-0.06) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=20] (0,-0.13) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=50] (0.15,-0.2) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=35] (-0.22,0.2) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=-20] (-0.1,0.05) ellipse (0.07 and 0.02);
+        \fill[green!40!brown] (0,0) ellipse (0.03 and 0.06);
+\end{scope}}}
+\begin{document}
+\AddToShipoutPictureBG{%
+ \AtPageLowerLeft{%
+ \begin{tikzpicture}[overlay,remember picture]
+ \fill[Seashell1] (0,0) rectangle (\paperwidth,\paperheight);
+
+\fill[DarkOliveGreen4] (current page.north west) rectangle ([yshift=-0.5cm]current page.north east);
+
+ \fill[DarkOliveGreen4,ultra thick,bend right,draw=Silver] ([yshift=2cm]current page.south west) to ([xshift=-2cm]current page.north) -- (current page.north west) -- cycle;
+
+ \fill[DarkOliveGreen4,thick,bend left,draw=Silver] ([yshift=2cm]current page.south east) to ([xshift=2cm]current page.north)--
+ (current page.north east) --cycle;
+
+\fill[DarkOliveGreen4] (current page.north west) rectangle ([yshift=-0.5cm]current page.north east);
+
+
+
+ \foreach \i in {1,2,...,25}
+     \path [shift={(rnd*5-1,rnd*6+3.6)},scale=0.5,transform shape]
+           (0,0) pic{pizza};%-- ++(60:1) -- ++(-60:1) -- cycle
+        ;
+
+\foreach \i in {1,2,...,25}
+     \path [shift={(rnd*5+8.8,rnd*6+3.6)},
+       ,scale=0.5,transform shape]
+           (0,0) pic{pizza};%-- ++(60:1) -- ++(-60:1) -- cycle
+    ;
+
+ \foreach \i in {1,2,...,10}
+     \path [shift={(rnd*4+3.4,rnd+8.6)},scale=0.5,transform shape]
+           (0,0) pic{pizza};%-- ++(60:1) -- ++(-60:1) -- cycle
+    ;
+
+ \end{tikzpicture}}}
+
+\mbox{}
+
+\medskip
+
+{\centering\Huge\sffamily
+\bfseries\scshape
+
+\vspace{3\baselineskip}
+International\\ Pizza Day \\ 9.2.2018!
+\par}
+
+\vfill
+\strut
+\end{document}

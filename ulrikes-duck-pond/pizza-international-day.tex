@@ -1,0 +1,81 @@
+% !Mode:: "TeX:UTF-8:Main"
+% !Mode:: "TeX:UTF-8:Main"
+% arara: pdflatex
+% arara: convert: {density: 96, otheroptions: -dispose previous -delay 20 -loop 1, format: gif}
+% xarara: showfile: {format: gif}
+
+\documentclass{article}
+\usepackage[utf8]{inputenc} %probably not needed ...
+\usepackage[T1]{fontenc}
+\usepackage[svgnames,x11names]{xcolor}
+\usepackage{geometry,eso-pic}
+\geometry{papersize={128mm,96mm}}
+
+
+\usepackage{tikzducks}
+
+\pagestyle{empty}
+\tikzset{pizza/.pic={
+\begin{scope}[yscale=2]
+\path[use as bounding box](-0.5,-0.25) rectangle (.5,.25);
+%\draw(-0.5,-0.25) rectangle (0.5,.25);
+\fill[brown] (0,0) ellipse (0.4 and 0.2);
+        \fill[red!70!black] (0,0) ellipse (0.34 and 0.16);
+        \fill[white!85!yellow] (0.15,0.05) ellipse (0.065 and 0.04);
+        \fill[white!85!yellow] (-0.19,-0.030) ellipse (0.065 and 0.04);
+        \fill[white!85!yellow] (-0.05,0.08) ellipse (0.065 and 0.04);
+        \fill[white!85!yellow] (.02,-0.06) ellipse (0.065 and 0.04);
+        \fill[green!40!brown] (0.09,-0.06) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=20] (0,-0.13) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=50] (0.15,-0.2) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=35] (-0.22,0.2) ellipse (0.07 and 0.02);
+        \fill[green!40!brown,rotate=-20] (-0.1,0.05) ellipse (0.07 and 0.02);
+        \fill[green!40!brown] (0,0) ellipse (0.03 and 0.06);
+\end{scope}}}
+\newlength\pizzashift
+\setlength\pizzashift{0.0125cm}
+\usetikzlibrary{patterns,decorations.pathmorphing}
+\AddToShipoutPictureBG{%
+ \AtPageLowerLeft{%
+ \begin{tikzpicture}[overlay,remember picture]
+ \fill[LightSkyBlue] (0,0) rectangle (\paperwidth,\paperheight);
+ \pgfmathsetseed{9}
+ \end{tikzpicture}}}
+\begin{document}
+\foreach\x in {1,2,...,100}
+{
+\begin{tikzpicture}[remember picture]
+\coordinate (bottom) at (0.45\textwidth,-2cm);
+\path[use as bounding box](0,0) rectangle (\textwidth,\textheight);
+\begin{scope}[scale=6,transform shape]
+\path ([yshift=\dimexpr\x\pizzashift\relax]bottom) pic {pizza};
+\end{scope}
+ \fill[overlay,DodgerBlue2,decorate, decoration={snake,segment length={10mm}}] ([xshift=-2cm,yshift=-2cm]current page.west) rectangle ([xshift=1cm,yshift=-2cm]current page.south east);
+
+\begin{scope}[xshift=0.5cm, yshift=2ex,xscale=-1]
+		\duck[]
+\node[rotate=-20,transform shape] at (2,1) {\includegraphics[width=1.5cm]{bc-ditalie.mps}};
+%\path(0.7,1) pic[rotate=-20,scale=1.2] {pizza};
+\end{scope}
+
+\begin{scope}[xshift=3.5cm, yshift=2ex,xscale=-1]
+		\duck[]
+\node[rotate=-20,transform shape] at (2,1) {\includegraphics[width=1.5cm]{bc-ditalie.mps}};
+%\path(0.7,1) pic[rotate=-20,scale=1.2] {pizza};
+\end{scope}
+
+\begin{scope}[xshift=4cm, yshift=2ex,]
+		\duck[]
+\node[rotate=-20,transform shape] at (2,1) {\includegraphics[width=1.5cm]{bc-ditalie.mps}};
+%\path(0.7,1) pic[rotate=-20,scale=1.2] {pizza};
+\end{scope}
+
+\begin{scope}[xshift=7cm, yshift=2ex,]
+		\duck[]
+\node[rotate=-20,transform shape] at (2,1) {\includegraphics[width=1.5cm]{bc-ditalie.mps}};
+%\path(0.7,1) pic[rotate=-20,scale=1.2] {pizza};
+\end{scope}
+\end{tikzpicture}
+\newpage
+}
+\end{document} 
