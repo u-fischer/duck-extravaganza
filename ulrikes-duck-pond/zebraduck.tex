@@ -1,0 +1,15 @@
+\documentclass{article}
+
+\usepackage{tikzducks}
+
+\begin{document}
+
+\begin{tikzpicture}
+\duck[body=black]
+ \begin{scope}
+  \path[clip]
+  \duckpathjacket;
+  \node[anchor=south west] at (0,-0.1){\includegraphics[width=2cm]{zebrapattern}};
+ \end{scope}
+\end{tikzpicture}
+\end{document}
