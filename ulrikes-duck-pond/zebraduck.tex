@@ -1,3 +1,4 @@
+% !Mode:: "TeX:UTF-8:Main"
 \documentclass{article}
 
 \usepackage{tikzducks}
@@ -7,9 +8,37 @@
 \begin{tikzpicture}
 \duck[body=black]
  \begin{scope}
-  \path[clip]
-  \duckpathjacket;
+  \path[clip]  \duckpathjacket;
   \node[anchor=south west] at (0,-0.1){\includegraphics[width=2cm]{zebrapattern}};
  \end{scope}
+\end{tikzpicture}
+
+%zweifelhaft. Sie aus wie eine Mumie ;-)
+\begin{tikzpicture}
+\duck[body=black]
+ \begin{scope}
+  \path[clip]
+ (0.90,1.50) ellipse (0.50 and 0.625);;
+   \node[anchor=south west] at (0.3,0.7){\includegraphics[height=1.5cm,angle=180]{zebrapattern}};
+ \end{scope}
+
+ \begin{scope}
+  \path[clip]
+  \duckpathjacket ;
+  \node[anchor=south west] at (0,-0.1){\includegraphics[width=2cm]{zebrapattern}};
+ \end{scope}
+ \makeatletter
+ \fill[\duck@bill] \duckpathbill;
+ \fill[\duck@eye, rotate=-20]
+	(0.23,1.7675) ellipse (0.0893 and 0.125);
+\fill[\duck@pupil, rotate=-20]
+	(0.26,1.7575) ellipse (0.0357 and 0.0714);
+%
+% left eye %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fill[\duck@eye, rotate=-20]
+	(-0.06,1.74) ellipse (0.0786 and 0.1143);
+\fill[\duck@pupil, rotate=-20]
+	(-0.03,1.73) ellipse (0.0286 and 0.0643);
+%
 \end{tikzpicture}
 \end{document}
