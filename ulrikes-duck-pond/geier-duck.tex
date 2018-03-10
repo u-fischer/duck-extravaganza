@@ -1,0 +1,39 @@
+% !Mode:: "TeX:UTF-8:Main"
+% arara: pdflatex
+% arara: convert: {density: 96, otheroptions: -dispose previous -delay 20 -loop 1, format: gif}
+% xarara: showfile: {format: gif}
+
+% music: https://www.youtube.com/watch?v=dG-62zBnKkQ
+\documentclass{article}
+\usepackage[utf8]{inputenc} %probably not needed ...
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{papersize={128mm,96mm},margin=0.5cm} %\textwidth=11.8, \textheight=8.6
+\usepackage[svgnames,x11names]{xcolor}
+\usepackage{tikzducks}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{backgrounds}
+\pagestyle{empty}
+\parindent=0pt
+\usepackage{animate}
+\usepackage{eso-pic}
+\usepackage{xfp}
+
+\begin{document}
+\centering
+\sffamily \Large Two more enemies of the marmot
+
+\begin{tikzpicture}
+\node[anchor=south west,inner sep=0pt]  (a) {\includegraphics[trim=2cm 20cm 2cm 1cm,clip,width=0.9\linewidth]{geier}};
+\begin{scope}[overlay,xshift=3cm,yshift=3.7cm]
+\draw[line width=5mm,line cap=round,brown!40!gray] ([yshift=-0.5cm]a.west)--++(4,1.2);
+
+\begin{scope}[xscale=-0.5,yscale=0.5]
+\duck[sunglasses=brown!50!black,cricket]
+\end{scope}
+
+\end{scope}
+\end{tikzpicture}
+
+
+\end{document}
