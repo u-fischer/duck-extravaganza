@@ -1,0 +1,31 @@
+% !Mode:: "TeX:UTF-8:Main"
+\documentclass[border=2mm]{standalone}
+
+\usepackage{tikzducks}
+\usepackage{graphicx}
+\usetikzlibrary{calc,shapes.callouts}
+\tikzset{pizza/.pic={
+    \fill[brown] (1.00,0.60) ellipse (0.4 and 0.2);
+ 	\fill[red!70!black] (1.00,0.60) ellipse (0.34 and 0.16);
+ 	\fill[white!85!yellow] (1.15,0.65) ellipse (0.065 and 0.04);	
+ 	\fill[white!85!yellow] (0.81,0.57) ellipse (0.065 and 0.04);	
+ 	\fill[white!85!yellow] (0.95,0.68) ellipse (0.065 and 0.04);	
+ 	\fill[white!85!yellow] (1.02,0.54) ellipse (0.065 and 0.04);
+ 	\fill[green!40!brown] (1.09,0.54) ellipse (0.07 and 0.02);
+ 	\fill[green!40!brown,rotate=20] (1.0,0.34) ellipse (0.07 and 0.02);
+ 	\fill[green!40!brown,rotate=-20] (0.9,1.05) ellipse (0.07 and 0.02);
+ 	\fill[green!40!brown] (1.00,0.60) ellipse (0.03 and 0.06);}}
+\begin{document}
+\begin{tikzpicture}
+  \duck[cap]
+  \node at ([yshift=1mm]wing){\includegraphics[trim=0cm 0cm 0.7cm 0cm,clip,angle=-30]{knifeandfork}};
+  \node at ([xshift=-0.3cm,yshift=0.1cm]wing){\includegraphics[trim=0.8cm 0cm 0cm 0cm,clip,angle=20]{knifeandfork}};
+  \node[draw, ,ellipse callout,callout absolute pointer={([xshift=-3mm]bill)}] at (-1,2) {\sffamily\scriptsize Dinnertime!};
+  \draw[scale=2,transform shape] (-1.,-0.6) pic {pizza};
+  \begin{scope}[xshift=0.5cm,yshift=1.4cm,rotate=170]
+  \fill[brown, rounded corners=2, rotate=-30] (0.4,1.2) rectangle (0.7,2.2);
+  \fill[brown, rounded corners=1, rotate=-30] (0.5,0.8) rectangle (0.6,1.3);
+  \end{scope}
+\end{tikzpicture}
+
+\end{document}

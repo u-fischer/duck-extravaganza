@@ -1,0 +1,157 @@
+% !Mode:: "TeX:UTF-8:Main"
+\documentclass{article}
+\usepackage{tikzducks}
+\tikzset{%
+  raindrop/.pic={
+    code={\tikzset{scale=1/10}
+ \clip [preaction={top color=blue!50!cyan!50, bottom color=blue!50!cyan}]
+ (0,0)  .. controls ++(0,-1) and ++(0,1) .. (1,-2)
+ arc (360:180:1)
+ .. controls ++(0,1) and ++(0,-1) .. (0,0) -- cycle;
+% %
+ \foreach \j in {1,3,...,20}
+ \shade [top color=blue!50!cyan!50, shift=(270:0), xscale=1-\j/40,yscale=1-\j/80, white, opacity=1/15]
+ [rotate=-\j] (0,0)  .. controls ++(0,-1) and ++(0,1) .. (1,-2)
+ arc (360:180:1)
+ .. controls ++(0,1) and ++(0,-1) .. (0,0) -- cycle;
+  }}}
+
+\begin{document}
+%https://tex.stackexchange.com/a/405973/2388
+\newcommand{\unionjack}{%
+    \begingroup%
+        \def\urationum{3}%
+        \def\uratioden{5}%
+        \def\uheight{2ex}%
+        \definecolor{ublue}{RGB}{0, 39, 118}%
+        \definecolor{ured}{RGB}{198, 12, 48}%
+        \colorlet{uwhite}{white}%
+        \begin{tikzpicture}[
+                    draw = none,
+                    line width = 0pt
+                ]
+            \coordinate (sw) at (0, 0);
+            \coordinate (nw) at (0, \uheight);
+            \coordinate (ne) at (\uheight * \uratioden / \urationum, \uheight);
+            \coordinate (se) at (\uheight * \uratioden / \urationum, 0);
+            \clip (sw) rectangle (ne);
+            \fill[ublue] (sw) rectangle (ne);
+            %
+            \coordinate (nwsebegtop) at ($(nw)!\uheight / 10!90:(se)$);
+            \coordinate (nwsebegbot) at ($(nw)!\uheight / 10!-90:(se)$);
+            \coordinate (nwseendtop) at ($(se)!\uheight / 10!-90:(nw)$);
+            \coordinate (nwseendbot) at ($(se)!\uheight / 10!90:(nw)$);
+            \fill[uwhite]
+                (nwsebegtop) -- (nwsebegbot) -- (nwseendbot)
+                -- (nwseendtop) -- cycle;
+            \coordinate (swnebegtop) at ($(sw)!\uheight / 10!90:(ne)$);
+            \coordinate (swnebegbot) at ($(sw)!\uheight / 10!-90:(ne)$);
+            \coordinate (swneendtop) at ($(ne)!\uheight / 10!-90:(sw)$);
+            \coordinate (swneendbot) at ($(ne)!\uheight / 10!90:(sw)$);
+            \fill[uwhite]
+                (swnebegtop) -- (swnebegbot) -- (swneendbot)
+                -- (swneendtop) -- cycle;
+            %
+            \begin{scope}
+                \clip (nw) -- (ne) -- (sw) -- cycle;
+                \coordinate (nwsebegtopred) at (nw);
+                \coordinate (nwsebegbotred) at ($(nw)!\uheight / 30 * 2!-90:(se)$);
+                \coordinate (nwseendtopred) at (se);
+                \coordinate (nwseendbotred) at ($(se)!\uheight / 30 * 2!90:(nw)$);
+                \fill[ured]
+                    (nwsebegtopred) -- (nwsebegbotred) -- (nwseendbotred)
+                    -- (nwseendtopred) -- cycle;
+            \end{scope}
+            \begin{scope}
+                \clip (sw) -- (se) -- (ne) -- cycle;
+                \coordinate (nwsebegtopred) at ($(nw)!\uheight / 30 * 2!90:(se)$);
+                \coordinate (nwsebegbotred) at (nw);
+                \coordinate (nwseendtopred) at ($(se)!\uheight / 30 * 2!-90:(nw)$);
+                \coordinate (nwseendbotred) at (se);
+                \fill[ured]
+                    (nwsebegtopred) -- (nwsebegbotred) -- (nwseendbotred)
+                    -- (nwseendtopred) -- cycle;
+            \end{scope}
+            \begin{scope}
+                \clip (sw) -- (se) -- (nw) -- cycle;
+                \coordinate (swnebegtopred) at (sw);
+                \coordinate (swnebegbotred) at ($(sw)!\uheight / 30 * 2!-90:(ne)$);
+                \coordinate (swneendtopred) at (ne);
+                \coordinate (swneendbotred) at ($(ne)!\uheight / 30 * 2!90:(sw)$);
+                \fill[ured]
+                    (swnebegtopred) -- (swnebegbotred) -- (swneendbotred)
+                    -- (swneendtopred) -- cycle;
+            \end{scope}
+            \begin{scope}
+                \clip (nw) -- (se) -- (ne) -- cycle;
+                \coordinate (swnebegtopred) at ($(sw)!\uheight / 30 * 2!90:(ne)$);
+                \coordinate (swnebegbotred) at (sw);
+                \coordinate (swneendtopred) at ($(ne)!\uheight / 30 * 2!-90:(sw)$);
+                \coordinate (swneendbotred) at (ne);
+                \fill[ured]
+                    (swnebegtopred) -- (swnebegbotred) -- (swneendbotred)
+                    -- (swneendtopred) -- cycle;
+            \end{scope}
+            %
+            \coordinate (n) at ($(nw)!0.5!(ne)$);
+            \coordinate (s) at ($(sw)!0.5!(se)$);
+            \fill[uwhite]
+                ($(nw)!1/3!(sw)$) -- ($(ne)!1/3!(se)$)
+                -- ($(se)!1/3!(ne)$) -- ($(sw)!1/3!(nw)$) -- cycle;
+            \fill[uwhite]
+                ($(s)!\uheight / 6!90:(n)$)
+                -- ($(s)!\uheight / 6!-90:(n)$)
+                -- ($(n)!\uheight / 6!90:(s)$)
+                -- ($(n)!\uheight / 6!-90:(s)$)
+                -- cycle;
+            \fill[ured]
+                ($(nw)!2/5!(sw)$) -- ($(ne)!2/5!(se)$)
+                -- ($(se)!2/5!(ne)$) -- ($(sw)!2/5!(nw)$) -- cycle;
+            \fill[ured]
+                ($(s)!\uheight / 10!90:(n)$)
+                -- ($(s)!\uheight / 10!-90:(n)$)
+                -- ($(n)!\uheight / 10!90:(s)$)
+                -- ($(n)!\uheight / 10!-90:(s)$)
+                -- cycle;
+        \end{tikzpicture}%
+    \endgroup%
+}
+
+\begin{tikzpicture}[xscale=-1]
+  \duck
+  \coordinate (re) at (0.52,1.5675);
+  \coordinate (le) at (0.82,1.4675);
+  \path[transform shape,scale=0.5] (re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.4cm]re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.8cm]re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-1.2cm]re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-1.6cm]re) pic {raindrop};
+
+  \path[transform shape,scale=0.5] (le) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.4cm]le) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.8cm]le) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-1.2cm]le) pic {raindrop};
+  %\node[rotate=-20,transform shape] at (2,1) {\includegraphics[width=1.5cm]{bc-ditalie.mps}};
+  \node[scale=2,rotate=20,inner sep=0pt] (flag) at ([xshift=1.2cm,yshift=0.9cm]wing) {\unionjack};
+  \draw[line width=2pt,shorten <=-3pt,shorten >=-1cm] (flag.north east) -- (flag.south east);
+  \node[rotate=-20,transform shape] at (2,1) {\phantom{\includegraphics[width=1.5cm]{bc-ditalie.mps}}};
+\end{tikzpicture}
+\raisebox{0.4cm}{\includegraphics[width=5cm]{hawaii-special}}
+\begin{tikzpicture}
+  \duck[grumpy]
+  \coordinate (re) at (0.52,1.5675);
+  \coordinate (le) at (0.82,1.4675);
+  \path[transform shape,scale=0.5] (re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.4cm]re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.8cm]re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-1.2cm]re) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-1.6cm]re) pic {raindrop};
+
+  \path[transform shape,scale=0.5] (le) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.4cm]le) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-0.8cm]le) pic {raindrop};
+  \path[transform shape,scale=0.5] ([yshift=-1.2cm]le) pic {raindrop};
+  \node[rotate=-20,transform shape] at (2,1) {\includegraphics[width=1.5cm]{bc-ditalie.mps}};
+\end{tikzpicture}
+
+\end{document} 

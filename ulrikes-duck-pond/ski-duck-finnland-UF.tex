@@ -52,11 +52,11 @@
 \begin{document}
 \AddToShipoutPictureBG{%
  \AtPageLowerLeft{%
- %\begin{tikzpicture}[overlay,remember picture]
-% \fill[DeepSkyBlue3!50!black] (0,0) rectangle (\paperwidth,\paperheight);
-% \pgfmathsetseed{9}
-% \foreach \x in {1,2,...,80}{\mystar}
-% \end{tikzpicture}
+ \begin{tikzpicture}[overlay,remember picture]
+ \fill[DeepSkyBlue3!50!black] (0,0) rectangle (\paperwidth,\paperheight);
+ \pgfmathsetseed{9}
+ \foreach \x in {1,2,...,80}{\mystar}
+ \end{tikzpicture}
  }}
 \centering
 \mbox{}
@@ -82,7 +82,7 @@
 
 \begin{scope}[scale=3]
 \duck[santa=finnlandblue!80!black, jacket=gray, tshirt=white,body=LightGoldenrod2!70!RosyBrown1]
-%\path ([xshift=0cm,yshift=1mm]wing) pic {finnlandflag};
+\path ([xshift=0cm,yshift=1mm]wing) pic {finnlandflag};
 %\path ([xshift=0.3cm,yshift=0.4cm]bill)node{\includegraphics[scale=0.55]{skibrille.png}};
 \begin{scope}[overlay,xshift=0.3cm,yshift=2.2cm,rotate=-10,y=0.80pt, x=0.80pt, yscale=-.08000000, xscale=.08000000, inner sep=0pt, outer sep=0pt]% g181
   % path177
