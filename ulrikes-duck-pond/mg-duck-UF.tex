@@ -1,0 +1,25 @@
+% !Mode:: "TeX:UTF-8:Main"
+% arara: pdflatex
+% arara: convert: {density: 160, otheroptions: -dispose previous -delay 20 -loop 1, format: gif}
+% xarara: showfile: {format: gif}
+\documentclass[border=1cm]{standalone}
+\usepackage[x11names,svgnames]{xcolor}
+\usepackage{tikzducks}
+\definecolor{mggreen}{RGB}{37,166,89}
+\definecolor{mggreen1}{RGB}{122,185,44}
+%\definecolor{mggreen2}{RGB}{128,186,49}
+%\colorlet{mggreen}{mggreen1}
+\begin{document}
+\makeatletter
+\begin{tikzpicture}
+\fill[mggreen1!80!black] (-0.4cm,-0.4cm) rectangle (2.5cm,2.5cm);
+\duck[tshirt=white,jacket=white,stripes={\stripes[color=mggreen1,distance=2cm,rotate=0,initialx=1cm] \stripes[color=black,initialx=0.85,rotate=0,distance=2cm,height=3cm]}]
+\node[overlay] at(0.3,0.7){\includegraphics[width=1.5mm]{Borussia_Moenchengladbach_logo}};
+\draw[line width=0.1pt] \duckpathtshirt;
+\draw[line width=0.1pt] \duckpathjacket;
+
+\end{tikzpicture}
+
+
+
+\end{document} 
