@@ -1,0 +1,13 @@
+\documentclass{standalone}
+\usepackage{tikzducks,graphicx}
+\begin{document}
+\begin{tikzpicture}[xscale=-1,transform shape]
+  \duck
+  \node[anchor=west,inner sep=0pt] at ([xshift=6mm,yshift=1mm]wing){\includegraphics[width=0.6cm]{raf_roundel}};
+\end{tikzpicture}
+\quad
+\begin{tikzpicture}
+  \duck
+  \node[anchor=west,inner sep=0pt] at ([xshift=6mm,yshift=1mm]wing){\includegraphics[width=0.6cm]{raf_roundel}};
+\end{tikzpicture}
+\end{document}
