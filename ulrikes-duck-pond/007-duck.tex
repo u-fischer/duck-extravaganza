@@ -1,0 +1,54 @@
+% !Mode:: "TeX:UTF-8:Main"
+% arara: pdflatex
+% arara: convert: {density: 160, otheroptions: -dispose previous -delay 20 -loop 0, format: gif}
+% xarara: showfile: {format: gif}
+
+\documentclass{article}
+\usepackage[utf8]{inputenc} %probably not needed ...
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{papersize={128mm,96mm},margin=0.5cm} %\textwidth=11.8, \textheight=8.6
+\usepackage[x11names,svgnames]{xcolor}
+\usepackage{tikzducks}
+\usetikzlibrary{shapes.geometric}
+\pagestyle{empty}
+\parindent=0pt
+\usepackage{eso-pic}
+\usepackage{xfp}
+\newcommand\loopmax{20}
+
+\begin{document}
+\pagecolor{blue!10!black}
+\foreach \x in {1,2,...,\loopmax}{%
+\begin{tikzpicture}[]
+\path[use as bounding box] (0,0) rectangle (\textwidth,\textheight);
+
+\begin{scope}[xshift=\fpeval{5-\x*(2/\loopmax)}cm,yshift=2.1cm,scale=1.2]
+\fill[white] (0.85,0.95) circle (2cm);
+\duck[body=DarkGoldenrod1!20!AntiqueWhite1,tshirt=lightgray,
+jacket=blue!10!black,
+tie=blue!10!black]
+\end{scope}
+\end{tikzpicture}\newpage}
+
+\foreach \x in {1,2,...,\loopmax}{%
+\begin{tikzpicture}
+\path[use as bounding box] (0,0) rectangle (\textwidth,\textheight);
+\begin{scope}[xshift=\fpeval{5-20*(2/\loopmax)}cm,yshift=2.1cm,scale=1.2]
+\fill[white] (0.85,0.95) circle (2cm);
+\end{scope}
+%
+\begin{scope}[xshift=5cm,yshift=2.1cm,scale=1.2]
+\begin{scope}[xscale=-1,transform shape]
+\duck[body=DarkGoldenrod1!20!AntiqueWhite1,jacket=blue!10!black,
+tie=blue!10!black,tshirt=lightgray,icecream=brown,
+flavoura=green!50!brown,
+flavourb=white,
+flavourc=red]
+\end{scope}
+\end{scope}
+%\end{scope}
+
+\end{tikzpicture}\newpage}
+
+\end{document} 
